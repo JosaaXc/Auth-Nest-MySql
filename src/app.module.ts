@@ -6,11 +6,12 @@ import { envs } from './config';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: envs.mysql.port,
-      username: envs.mysql.user,
-      password: envs.mysql.password,
-      database: envs.mysql.database,
+      host: envs.host,
+      port: envs.dbport,
+      username: envs.user,
+      password: envs.password,
+      database: envs.database,
+      autoLoadEntities: true,
       synchronize: true,
     }),
   ],
