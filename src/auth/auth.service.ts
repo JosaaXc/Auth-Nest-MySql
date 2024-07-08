@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { SignupDto } from './dto/signup.dto';
 import { UsersService } from '../users/users.service';
 import * as bcryptjs from 'bcryptjs';
@@ -21,7 +21,7 @@ export class AuthService {
     delete user.password;
 
     return user;
-    
+
   }
 
 
@@ -29,12 +29,12 @@ export class AuthService {
     const { email, password } = loginDto;
     const user = await this.usersService.findOneByEmail( email );
     if(!user) {
-      throw new NotFoundException('User not found');
+      throw new UnauthorizedException('Credentials not valid');
     }
 
     const isPasswordValid = await bcryptjs.compare(password, user.password);
     if(!isPasswordValid) {
-      throw new NotFoundException('Invalid password');
+      throw new UnauthorizedException('Invalid password');
     }
 
     return user;

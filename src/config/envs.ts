@@ -8,6 +8,7 @@ interface EnvConfig {
     MYSQL_USER : string,
     MYSQL_PASSWORD : string,
     MYSQL_HOST : string,
+    JWT_SECRET : string,
 }
 
 const envVarsSchema = joi.object({
@@ -17,6 +18,7 @@ const envVarsSchema = joi.object({
     MYSQL_PASSWORD: joi.string().required(),
     MYSQL_PORT: joi.number().required(),
     MYSQL_HOST: joi.string().required(),
+    JWT_SECRET: joi.string().required(),
 }).unknown(true);
 
 const { error, value } = envVarsSchema.validate( process.env ) 
@@ -34,4 +36,5 @@ export const envs = {
     password: envVars.MYSQL_PASSWORD,
     dbport: envVars.MYSQL_PORT,
     host: envVars.MYSQL_HOST,
+    jwtSecret: envVars.JWT_SECRET,
 }
