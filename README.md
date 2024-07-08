@@ -7,6 +7,7 @@
 
 ```bash
 $ yarn install
+$ copy and paste .env.template and remame to .env
 ```
 
 ## Running the app
