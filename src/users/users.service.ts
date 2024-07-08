@@ -33,4 +33,8 @@ export class UsersService {
   async blockUser(id: string): Promise<User> {
     throw new Error('Method not implemented.');
   }
+
+  async findOneByEmail(email: string): Promise<User> {
+    return await this.usersRepository.findOne({ where: { email } });
+  }
 }

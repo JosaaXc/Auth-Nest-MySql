@@ -12,11 +12,11 @@ export class User {
     @Column({ type: 'varchar', length: 50, unique: true })
     email: string;
 
-    @Column({ type: 'varchar', length: 30 })
+    @Column({ type: 'varchar' })
     password: string;
 
-    @Column({ type: 'simple-array', default: ['user'] })
-    roles: string[];
+    @Column({ type: 'varchar', default: 'user'})
+    roles: string;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     created_at: Date;
