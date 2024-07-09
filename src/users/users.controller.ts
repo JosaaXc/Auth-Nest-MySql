@@ -3,6 +3,8 @@ import { UsersService } from './users.service';
 
 import { User } from './entities/user.entity';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { CurrentUser } from '../auth/decorators/current-user.decorator';
+import { ValidRoles } from '../auth/enums/valid-roles.enum';
 
 @Controller('users')
 export class UsersController {
@@ -10,7 +12,9 @@ export class UsersController {
 
   @Get()
   @UseGuards(JwtAuthGuard)
-  findAll(): Promise<User[]> {
+  findAll(
+    @CurrentUser( ValidRoles.committee ) user: User
+  ): Promise<User[]> {
     return this.usersService.findAll();
   }
 

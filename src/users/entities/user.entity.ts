@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { ValidRoles } from "../../auth/enums/valid-roles.enum";
 
 @Entity({ name: 'users' })
 export class User {
@@ -15,8 +16,8 @@ export class User {
     @Column({ type: 'varchar' })
     password: string;
 
-    @Column({ type: 'varchar', default: 'user'})
-    roles: string;
+    @Column({ type: 'enum', enum: ValidRoles ,default: ValidRoles.user })
+    roles: ValidRoles;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     created_at: Date;
