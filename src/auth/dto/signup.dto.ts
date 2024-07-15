@@ -2,20 +2,20 @@ import { IsArray, IsEmail, IsString, MaxLength, MinLength } from "class-validato
 
 export class SignupDto {
     
-    @IsString()
-    @MinLength(3)
-    @MaxLength(100)
-    fullName: string;
+	@IsString()
+	@MinLength(3)
+	@MaxLength(100)
+	fullName: string;
 
-    @IsEmail()
-    email: string;
+	@IsEmail()
+	email: string;
 
-    @IsString()
-    @MinLength(6)
-    @MaxLength(30)
-    password: string;
+	@IsString()
+	@MinLength(6)
+	@MaxLength(30)
+	password: string;
 
-    @IsString()
-    roles: string;
+	@IsString()
+	roles: string;
 
 }
