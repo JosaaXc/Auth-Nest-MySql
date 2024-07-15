@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './entities/user.entity';
+import { PaginationDto } from '../common/dto/pagination.dto';
 
 @Injectable()
 export class UsersService {
@@ -18,8 +19,15 @@ export class UsersService {
     return this.usersRepository.save(createUserDto);
   }
 
-  async findAll(): Promise<User[]> {
-    return await this.usersRepository.find();
+  async findAll( paginationDto: PaginationDto ): Promise<User[]> {
+
+    const { offset, limit } = paginationDto;
+
+    return await this.usersRepository.find({
+      skip: offset,
+      take: limit,
+    });
+    
   }
 
   async findOne(id: string): Promise<User> {
