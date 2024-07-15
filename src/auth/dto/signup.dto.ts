@@ -1,4 +1,5 @@
-import { IsArray, IsEmail, IsString, MaxLength, MinLength } from "class-validator";
+import { IsEmail, IsEnum, IsOptional, IsString, MaxLength, MinLength } from "class-validator";
+import { ValidRoles } from "../enums/valid-roles.enum";
 
 export class SignupDto {
     
@@ -16,6 +17,13 @@ export class SignupDto {
 	password: string;
 
 	@IsString()
+	@MinLength(10)
+	@MaxLength(10)
+    phoneNumber: string;
+
+	@IsString()
+	@IsOptional()
+	@IsEnum(ValidRoles)
 	roles: string;
 
 }

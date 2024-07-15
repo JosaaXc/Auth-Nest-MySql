@@ -43,7 +43,7 @@ export class AuthService {
     const token = this.getJwtToken(user.id)
 
     delete user.password;
-    delete user.created_at;
+    delete user.createdAt;
 
     return {
       user,
@@ -57,7 +57,6 @@ export class AuthService {
 
   async validateUser( id: string): Promise<User> {
     const user = await this.usersService.findOneById(id);
-    if( !user.isActive ) throw new UnauthorizedException('User is blocked');
 
     delete user.password;
 

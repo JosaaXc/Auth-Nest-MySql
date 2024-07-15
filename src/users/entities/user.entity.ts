@@ -19,10 +19,10 @@ export class User {
     @Column({ type: 'enum', enum: ValidRoles ,default: ValidRoles.user })
     roles: ValidRoles;
 
-    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-    created_at: Date;
+    @Column({ type: 'varchar', length: 10, unique: true })
+    phoneNumber: string;
 
-    @Column({ type: 'boolean', default: true })
-    isActive: boolean;
+    @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+    createdAt: Date;
 
 }
